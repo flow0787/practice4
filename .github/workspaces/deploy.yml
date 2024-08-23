@@ -1,0 +1,30 @@
+name: Test and Deploy
+on: push
+
+jobs:
+  lint-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Node18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Output node info
+        run: npm help
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run:  echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: List files in the cloned repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint code
+        run: npm lint
+      - name: Test code
+        run: npm test
+      - name: Build project
+        run: npm build
+      - name: Deploy code
+        run: echo "deployed"
+

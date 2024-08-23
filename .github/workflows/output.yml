@@ -1,0 +1,9 @@
+name: Output data
+on: issues
+
+jobs:
+  lint-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display issues details
+        run: echo "${{ github }}"
